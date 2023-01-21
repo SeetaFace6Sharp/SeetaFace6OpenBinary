@@ -9,9 +9,11 @@
 #include <memory>
 #include <functional>
 
-namespace orz {
+namespace orz
+{
 
-    class Pot {
+    class Pot
+    {
     public:
         using allocator = std::function<std::shared_ptr<void>(size_t)>;
 
@@ -22,8 +24,9 @@ namespace orz {
 
         void *relloc(size_t _size);
 
-        template<typename T>
-        T *calloc(size_t _count, bool copy = false) {
+        template <typename T>
+        T *calloc(size_t _count, bool copy = false)
+        {
             if (copy)
                 return reinterpret_cast<T *>(this->relloc(sizeof(T) * _count));
             else
@@ -48,4 +51,4 @@ namespace orz {
     };
 }
 
-#endif //ORZ_MEM_POT_H
+#endif // ORZ_MEM_POT_H

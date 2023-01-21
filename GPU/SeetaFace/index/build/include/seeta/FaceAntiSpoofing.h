@@ -6,119 +6,119 @@
 #include <string>
 #include <vector>
 
-
 namespace seeta
 {
     namespace v6
     {
 
-        class FaceAntiSpoofing {
+        class FaceAntiSpoofing
+        {
         public:
             /*
-             * »îÌåÊ¶±ğ×´Ì¬
+             * æ´»ä½“è¯†åˆ«çŠ¶æ€
              */
             enum Status
             {
-                REAL = 0,   ///< ÕæÊµÈËÁ³
-                SPOOF = 1,  ///< ¹¥»÷ÈËÁ³£¨¼ÙÈËÁ³£©
-                FUZZY = 2,  ///< ÎŞ·¨ÅĞ¶Ï£¨ÈËÁ³³ÉÏñÖÊÁ¿²»ºÃ£©
-                DETECTING = 3,  ///< ÕıÔÚ¼ì²â
+                REAL = 0,      ///< çœŸå®äººè„¸
+                SPOOF = 1,     ///< æ”»å‡»äººè„¸ï¼ˆå‡äººè„¸ï¼‰
+                FUZZY = 2,     ///< æ— æ³•åˆ¤æ–­ï¼ˆäººè„¸æˆåƒè´¨é‡ä¸å¥½ï¼‰
+                DETECTING = 3, ///< æ­£åœ¨æ£€æµ‹
             };
 
-            enum Property {
+            enum Property
+            {
                 PROPERTY_NUMBER_THREADS = 4,
                 PROPERTY_ARM_CPU_MODE = 5
             };
 
-
             /**
-             * \brief ¼ÓÔØÄ£ĞÍÎÄ¼ş
-             * \param setting Ä£ĞÍÎÄ¼ş, 0-¾Ö²¿»îÌå¼ì²âÎÄ¼ş£¨±ØÑ¡£©£¬1-È«¾Ö»îÌå¼ì²âÎÄ¼ş£¨¿ÉÑ¡£©
+             * \brief åŠ è½½æ¨¡å‹æ–‡ä»¶
+             * \param setting æ¨¡å‹æ–‡ä»¶, 0-å±€éƒ¨æ´»ä½“æ£€æµ‹æ–‡ä»¶ï¼ˆå¿…é€‰ï¼‰ï¼Œ1-å…¨å±€æ´»ä½“æ£€æµ‹æ–‡ä»¶ï¼ˆå¯é€‰ï¼‰
              */
-            SEETA_API explicit FaceAntiSpoofing( const SeetaModelSetting &setting );
+            SEETA_API explicit FaceAntiSpoofing(const SeetaModelSetting &setting);
             SEETA_API ~FaceAntiSpoofing();
 
-
             /**
-             * \brief ¼ì²â»îÌå
-             * \param [in] image ÊäÈëÍ¼Ïñ£¬ĞèÒª RGB ²ÊÉ«Í¨µÀ
-             * \param [in] face ÒªÊ¶±ğµÄÈËÁ³Î»ÖÃ
-             * \param [in] points ÒªÊ¶±ğµÄÈËÁ³ÌØÕ÷µã
-             * \return ÈËÁ³×´Ì¬ @see Status
-             * \note ´Ëº¯Êı²»Ö§³Ö¶àÏß³Ìµ÷ÓÃ£¬ÔÚ¶àÏß³Ì»·¾³ÏÂĞèÒª½¨Á¢¶ÔÓ¦µÄ FaceAntiSpoofing µÄ¶ÔÏó·Ö±ğµ÷ÓÃ¼ì²âº¯Êı
-             * \note µ±Ç°°æ±¾¿ÉÄÜ·µ»Ø REAL, SPOOF, FUZZY
+             * \brief æ£€æµ‹æ´»ä½“
+             * \param [in] image è¾“å…¥å›¾åƒï¼Œéœ€è¦ RGB å½©è‰²é€šé“
+             * \param [in] face è¦è¯†åˆ«çš„äººè„¸ä½ç½®
+             * \param [in] points è¦è¯†åˆ«çš„äººè„¸ç‰¹å¾ç‚¹
+             * \return äººè„¸çŠ¶æ€ @see Status
+             * \note æ­¤å‡½æ•°ä¸æ”¯æŒå¤šçº¿ç¨‹è°ƒç”¨ï¼Œåœ¨å¤šçº¿ç¨‹ç¯å¢ƒä¸‹éœ€è¦å»ºç«‹å¯¹åº”çš„ FaceAntiSpoofing çš„å¯¹è±¡åˆ†åˆ«è°ƒç”¨æ£€æµ‹å‡½æ•°
+             * \note å½“å‰ç‰ˆæœ¬å¯èƒ½è¿”å› REAL, SPOOF, FUZZY
              * \see SeetaImageData, SeetaRect, PointF, Status
              */
-            SEETA_API Status Predict( const SeetaImageData &image, const SeetaRect &face, const SeetaPointF *points ) const;
+            SEETA_API Status Predict(const SeetaImageData &image, const SeetaRect &face, const SeetaPointF *points) const;
 
             /**
-            * \brief ¼ì²â»îÌå£¨VideoÄ£Ê½£©
-            * \param [in] image ÊäÈëÍ¼Ïñ£¬ĞèÒª RGB ²ÊÉ«Í¨µÀ
-            * \param [in] face ÒªÊ¶±ğµÄÈËÁ³Î»ÖÃ
-            * \param [in] points ÒªÊ¶±ğµÄÈËÁ³ÌØÕ÷µã
-            * \return ÈËÁ³×´Ì¬ @see Status
-            * \note ´Ëº¯Êı²»Ö§³Ö¶àÏß³Ìµ÷ÓÃ£¬ÔÚ¶àÏß³Ì»·¾³ÏÂĞèÒª½¨Á¢¶ÔÓ¦µÄ FaceAntiSpoofing µÄ¶ÔÏó·Ö±ğµ÷ÓÃ¼ì²âº¯Êı
-            * \note ĞèÒªÊäÈëÁ¬ĞøÖ¡ĞòÁĞ£¬µ±ĞèÒªÊäÈëÏÂÒ»¶ÎÊÓÆµÊÇ£¬ĞèÒªµ÷ÓÃ ResetVideo ÖØÖÃ¼ì²â×´Ì¬
-            * \note µ±Ç°°æ±¾¿ÉÄÜ·µ»Ø REAL, SPOOF, DETECTION
-            * \see SeetaImageData, SeetaRect, PointF, Status
-            */
-            SEETA_API Status PredictVideo( const SeetaImageData &image, const SeetaRect &face, const SeetaPointF *points ) const;
+             * \brief æ£€æµ‹æ´»ä½“ï¼ˆVideoæ¨¡å¼ï¼‰
+             * \param [in] image è¾“å…¥å›¾åƒï¼Œéœ€è¦ RGB å½©è‰²é€šé“
+             * \param [in] face è¦è¯†åˆ«çš„äººè„¸ä½ç½®
+             * \param [in] points è¦è¯†åˆ«çš„äººè„¸ç‰¹å¾ç‚¹
+             * \return äººè„¸çŠ¶æ€ @see Status
+             * \note æ­¤å‡½æ•°ä¸æ”¯æŒå¤šçº¿ç¨‹è°ƒç”¨ï¼Œåœ¨å¤šçº¿ç¨‹ç¯å¢ƒä¸‹éœ€è¦å»ºç«‹å¯¹åº”çš„ FaceAntiSpoofing çš„å¯¹è±¡åˆ†åˆ«è°ƒç”¨æ£€æµ‹å‡½æ•°
+             * \note éœ€è¦è¾“å…¥è¿ç»­å¸§åºåˆ—ï¼Œå½“éœ€è¦è¾“å…¥ä¸‹ä¸€æ®µè§†é¢‘æ˜¯ï¼Œéœ€è¦è°ƒç”¨ ResetVideo é‡ç½®æ£€æµ‹çŠ¶æ€
+             * \note å½“å‰ç‰ˆæœ¬å¯èƒ½è¿”å› REAL, SPOOF, DETECTION
+             * \see SeetaImageData, SeetaRect, PointF, Status
+             */
+            SEETA_API Status PredictVideo(const SeetaImageData &image, const SeetaRect &face, const SeetaPointF *points) const;
 
             /**
-             * \brief ÖØÖÃ Video£¬¿ªÊ¼ÏÂÒ»´Î PredictVideo Ê¶±ğ
+             * \brief é‡ç½® Videoï¼Œå¼€å§‹ä¸‹ä¸€æ¬¡ PredictVideo è¯†åˆ«
              */
             SEETA_API void ResetVideo();
 
             /**
-             * \brief »ñÈ¡»îÌå¼ì²âÄÚ²¿·ÖÊı
-             * \param [out] clarity Êä³öÈËÁ³ÖÊÁ¿·ÖÊı
-             * \param [out] reality ÕæÊµ¶È
-             * \note »ñÈ¡µÄÊÇÉÏÒ»´Îµ÷ÓÃ Predict »ò PredictVideo ½Ó¿ÚºóÄÚ²¿µÄãĞÖµ
+             * \brief è·å–æ´»ä½“æ£€æµ‹å†…éƒ¨åˆ†æ•°
+             * \param [out] clarity è¾“å‡ºäººè„¸è´¨é‡åˆ†æ•°
+             * \param [out] reality çœŸå®åº¦
+             * \note è·å–çš„æ˜¯ä¸Šä¸€æ¬¡è°ƒç”¨ Predict æˆ– PredictVideo æ¥å£åå†…éƒ¨çš„é˜ˆå€¼
              */
-            SEETA_API void GetPreFrameScore( float *clarity = nullptr, float *reality = nullptr );
+            SEETA_API void GetPreFrameScore(float *clarity = nullptr, float *reality = nullptr);
 
             /**
-             * ÉèÖÃ Video Ä£Ê½ÖĞ£¬Ê¶±ğÊÓÆµÖ¡Êı£¬µ±ÊäÈëÖ¡ÊıÎª¸ÃÖµÒÔºó²Å»áÓĞ·µ»ØÖµ
-             * \param [in] number ÊÓÆµÖ¡Êı
+             * è®¾ç½® Video æ¨¡å¼ä¸­ï¼Œè¯†åˆ«è§†é¢‘å¸§æ•°ï¼Œå½“è¾“å…¥å¸§æ•°ä¸ºè¯¥å€¼ä»¥åæ‰ä¼šæœ‰è¿”å›å€¼
+             * \param [in] number è§†é¢‘å¸§æ•°
              */
-            SEETA_API void SetVideoFrameCount( int32_t number );
+            SEETA_API void SetVideoFrameCount(int32_t number);
 
             /**
-             * \return »ñÈ¡ÊÓÆµÖ¡ÊıÉèÖÃ
+             * \return è·å–è§†é¢‘å¸§æ•°è®¾ç½®
              */
             SEETA_API int32_t GetVideoFrameCount() const;
 
             /**
-             * ÉèÖÃãĞÖµ
-             * \param [in] clarity ÇåÎú¶ÈãĞÖµ
-             * \param [in] reality »îÌåãĞÖµ
-             * \note clarity Ô½¸ßÒªÇóÊäÈëµÄÍ¼ÏñÖÊÁ¿Ô½¸ß£¬reality Ô½¸ß¶ÔÊ¶±ğÒªÇóÔ½ÑÏ¸ñ
-             * \note Ä¬ÈÏãĞÖµÎª 0.3, 0.8
+             * è®¾ç½®é˜ˆå€¼
+             * \param [in] clarity æ¸…æ™°åº¦é˜ˆå€¼
+             * \param [in] reality æ´»ä½“é˜ˆå€¼
+             * \note clarity è¶Šé«˜è¦æ±‚è¾“å…¥çš„å›¾åƒè´¨é‡è¶Šé«˜ï¼Œreality è¶Šé«˜å¯¹è¯†åˆ«è¦æ±‚è¶Šä¸¥æ ¼
+             * \note é»˜è®¤é˜ˆå€¼ä¸º 0.3, 0.8
              */
-            SEETA_API void SetThreshold( float clarity, float reality );
-			
-			 /**
-             * ÉèÖÃÈ«¾ÖãĞÖµ
-             * \param [in] box_thresh È«¾Ö¼ì²âãĞÖµ
-             * \note Ä¬ÈÏãĞÖµÎª 0.8
-             */
-			 SEETA_API void SetBoxThresh(float box_thresh);
-			 
-			 SEETA_API float GetBoxThresh()const;
+            SEETA_API void SetThreshold(float clarity, float reality);
 
             /**
-             * »ñÈ¡ãĞÖµ
-             * \param [out] clarity ÇåÎú¶ÈãĞÖµ
-             * \param [out] reality »îÌåãĞÖµ
+             * è®¾ç½®å…¨å±€é˜ˆå€¼
+             * \param [in] box_thresh å…¨å±€æ£€æµ‹é˜ˆå€¼
+             * \note é»˜è®¤é˜ˆå€¼ä¸º 0.8
              */
-            SEETA_API void GetThreshold( float *clarity = nullptr, float *reality = nullptr ) const;
+            SEETA_API void SetBoxThresh(float box_thresh);
+
+            SEETA_API float GetBoxThresh() const;
+
+            /**
+             * è·å–é˜ˆå€¼
+             * \param [out] clarity æ¸…æ™°åº¦é˜ˆå€¼
+             * \param [out] reality æ´»ä½“é˜ˆå€¼
+             */
+            SEETA_API void GetThreshold(float *clarity = nullptr, float *reality = nullptr) const;
 
             SEETA_API void set(Property property, double value);
 
             SEETA_API double get(Property property) const;
+
         private:
-            FaceAntiSpoofing( const FaceAntiSpoofing & ) = delete;
-            const FaceAntiSpoofing &operator=( const FaceAntiSpoofing & ) = delete;
+            FaceAntiSpoofing(const FaceAntiSpoofing &) = delete;
+            const FaceAntiSpoofing &operator=(const FaceAntiSpoofing &) = delete;
 
         private:
             class Implement;

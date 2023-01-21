@@ -8,13 +8,14 @@ namespace seeta
 {
     namespace v2
     {
-        class MaskDetector {
+        class MaskDetector
+        {
         public:
             /**
              * \brief initialize `MaskDetector`
              * \param setting one specifc model, or zero model
              */
-            SEETA_API explicit MaskDetector(const SeetaModelSetting& setting);
+            SEETA_API explicit MaskDetector(const SeetaModelSetting &setting);
 
             SEETA_API ~MaskDetector();
 
@@ -28,8 +29,8 @@ namespace seeta
             SEETA_API bool detect(const SeetaImageData &image, const SeetaRect &face, float *score = nullptr);
 
         private:
-            MaskDetector(const MaskDetector &other ) = delete;
-            const MaskDetector &operator=(const MaskDetector &other ) = delete;
+            MaskDetector(const MaskDetector &other) = delete;
+            const MaskDetector &operator=(const MaskDetector &other) = delete;
 
         private:
             class Implement;
@@ -38,4 +39,3 @@ namespace seeta
     }
     using namespace v2;
 }
-
