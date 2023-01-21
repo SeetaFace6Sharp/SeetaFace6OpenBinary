@@ -1,6 +1,6 @@
 # SeetaFace6OpenBinary
 
-SeetaFace6Open和ViewFaceBridge编译静态二进制文件。
+SeetaFace6Open和ViewFaceBridge编译静态二进制文件。  
 SeetaFace6Open包含的平台以及路径：
 
 | 平台  |  操作系统 | 路径  | 备注  |
