@@ -81,7 +81,7 @@ SeetaFace6Open包含的平台以及路径：
 ```
 
 ### 如何使用
-将`CPU`或`GPU`目录下面的两个文件夹（SeetaFace、SeetaFace6Sharp）复制到项目`src`目录下面即可。提示替换时，可直接替换。
+将`CPU`或`GPU`目录下面的两个文件夹（SeetaFace、SeetaFace6Sharp）复制到项目`src`目录下面即可。提示替换时，可直接替换。或将SeetaFace6OpenBinary放于SeetaFace6Sharp同一级目录，然后执行脚本`SeetaFace6Sharp\src\SeetaFace6Sharp\Scripts\copy_gpu_seetaface6binary.bat`。
 
 ### 注意
-GPU版本只支持Windows x64平台，其它平台未编译和测试，可以自行编译。目前已经编译好的CUDA版本，编译工具链基于CUDA 12.0.0，使用GPU请先安装CUDA 12.0且需要显卡支持，应该最低需要GT 1030。
+GPU版本只支持Windows x64平台，其它平台未编译和测试，可以自行编译。目前已经编译好的CUDA版本，编译工具链基于CUDA 12.3.0，使用GPU请先安装CUDA 12.3且需要显卡支持，应该最低需要GT 1030。
